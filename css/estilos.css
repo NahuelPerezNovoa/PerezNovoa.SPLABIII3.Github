@@ -1,0 +1,75 @@
+body{
+  cursor: url('../img/telarana.png'),auto;
+}
+
+* {
+  font-family: 'Creepster';
+  font-size: 20px;
+}
+
+a, p{
+    color: white;
+}
+
+h3{
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+form{
+  border: 1px green;
+}
+
+#titleHeader{
+  background-color: lightskyblue;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .nav{
+    flex-direction: column;
+  }
+
+  .nav-item {
+    margin-bottom: 10px;
+  }
+}
+
+#topHeader {
+  background-image: url('../img/header.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;  
+}
+
+#crudContainer {
+  background-image: url('../img/fondo-crud.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;  
+}
+
+.nav-link, span {
+  color: green;
+}
+
+.dropdown{
+  margin-left: 10px;
+}
+
+.container {
+  color: violet;
+}
+
+thead {
+  background-color: rgb(131, 8, 189);
+  color: rgb(223, 220, 8)
+}
+

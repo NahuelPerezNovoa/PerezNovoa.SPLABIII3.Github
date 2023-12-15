@@ -1,0 +1,36 @@
+{
+  "monstruos": [
+    {
+      "id": 1702577510134,
+      "nombre": "Vlad Tepes",
+      "tipo": "Vampiro",
+      "alias": "Dracula",
+      "defensa": "estaca",
+      "miedo": 90
+    },
+    {
+      "id": 1702577511357,
+      "nombre": "Wayne",
+      "tipo": "Hombre Lobo",
+      "alias": "Lobo",
+      "defensa": "plata",
+      "miedo": 50
+    },
+    {
+      "id": 1702577511942,
+      "nombre": "Annabelle",
+      "tipo": "Fantasma",
+      "alias": "Muñeca Maldita",
+      "defensa": "crucifijo",
+      "miedo": 99
+    },
+    {
+      "id": 1702577512279,
+      "nombre": "Wanda",
+      "tipo": "Bruja",
+      "alias": "Bruja Escarlata",
+      "defensa": "pocion",
+      "miedo": 70
+    }
+  ]
+}

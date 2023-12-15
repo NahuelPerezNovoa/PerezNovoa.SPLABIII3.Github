@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="./scripts/app.js" type="module" defer></script>
+  <link rel="stylesheet" href="./css/estilos.css" />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer ></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer ></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+
+  <title>PérezNovoa.SPLABIII</title>
+</head>
+<body>
+    <header
+      class="d-flex py-3 justify-content-between"
+      id="topHeader"
+    >
+        <img class="rounded float-start" src="./img/logo.png" alt="logo.png" height="100px" />
+
+        <nav class="navbar navbar-expand">
+          <div class="navbar-collapse justify-content-between">
+            <ul class="nav float-end">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="./monstruos.html">Monstruos</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Blog</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Contacto</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+
+    <h3 id="titleHeader" class="row mb-0">Crud Monstruos</h3>
+
+    <div class="container-fluid py-2" id="crudContainer">
+      <form class="container border border-success rounded col-6" action="#">
+        <fieldset>
+          <h1 class="text-center">Informacion del Monstruo</h1>
+
+          <div class="form-group">
+              <label for="txtNombre">Nombre</label>
+              <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese nombre">
+          </div>
+
+          <div class="form-group">
+              <label for="txtAlias"> <img class="svgMask pr-2"  src="./img/mask.svg" alt="mask.svg" height="30px"/>Alias</label>
+              <input type="text" class="form-control" id="txtAlias" placeholder="Ingrese alterego">
+          </div>
+          
+          <div class="form-group">
+              <label for="defensa"><img class="svgDefense pr-2"  src="./img/defense.svg" alt="defense.svg" height="30px"/>Defensa </label>
+              <div class="row justify-content-center">
+                <div class="form-check form-check-inline col-2">
+                  <input type="radio" name="rdoDefensa" id="rdoPocion" class="form-check-input" value="pocion" checked/>
+                  <label for="rdoPocion" class="form-check-label">Pocion</label>
+                </div>
+                <div class="form-check form-check-inline col-2">
+                  <input type="radio" name="rdoDefensa" id="rdoCrucifijo" class="form-check-input" value="crucifijo"/>
+                  <label for="rdoCrucifijo" class="form-check-label">Crucifijo</label>
+                </div>
+                <div class="form-check form-check-inline col-2">
+                  <input type="radio" name="rdoDefensa" id="rdoEstaca" class="form-check-input" value="estaca"/>
+                  <label for="rdoEstaca" class="form-check-label">Estaca</label>
+               </div>
+               <div class="form-check form-check-inline col-2">
+                  <input type="radio" name="rdoDefensa" id="rdoPlata" class="form-check-input" value="plata"/>
+                  <label for="rdoPlata" class="form-check-label">Plata</label>
+               </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="customRange"> <img class="svgFear pr-2"  src="./img/fear.svg" alt="fear.svg" height="30px"/>Miedo</label>
+            <input type="range" class="form-range col-12" id="slideMiedo">
+          </div>
+
+          <div class="form-group">
+            <label for="slcTipos"> <img class="svgMonster pr-2"  src="./img/monster.svg" alt="monster.svg" height="30px"/>Tipo</label>
+            <select
+              class="custom-select col-12"
+              id="slcTipos"
+              required
+            ></select>
+          </div>
+
+          <div class="form-group col-9" id="divButton">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              id="btnGuardar"
+              value="btnGuardar"
+            >
+              <img
+                class="svgSave pr-2"
+                src="./img/save.svg"
+                alt="save.svg"
+                height="20px"
+              />Guardar
+            </button>
+            <button
+              class="invisible"
+              type="button"
+              id="btnEliminar"
+              value="btnEliminar"
+            >
+              Eliminar
+            </button>
+            <button
+              class="invisible"
+              type="button"
+              id="btnCancelar"
+              value="btnCancelar"
+            >
+              Cancelar
+            </button>
+        </fieldset>
+      </form>
+
+      <div class="spinner d-flex justify-content-center"></div>
+  </div>
+
+  <div class="container-fluid pt-3" style="background-color: rgb(211, 127, 0);">
+    <div class="d-flex justify-content-around mb-0">
+      <div class="form-group row mb-0">
+        <label class="text" for="slcFiltro">Filtrar tipo:<label>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Filtros</button>
+          <div class="dropdown-menu" name="slcFiltro" id="slcFiltro">
+            <button class="dropdown-item" type="button" id="ddiTodos">Todos</button>
+            <button class="dropdown-item" type="button" id="ddiEsqueleto">Esqueleto</button>
+            <button class="dropdown-item" type="button" id="ddiZombie">Zombie</button>
+            <button class="dropdown-item" type="button" id="ddiVampiro">Vampiro</button>
+            <button class="dropdown-item" type="button" id="ddiFantasma">Fantasma</button>
+            <button class="dropdown-item" type="button" id="ddiBruja">Bruja</button>
+            <button class="dropdown-item" type="button" id="ddiHombreLobo">Hombre Lobo</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row mb-0">
+        <label class="text" for="inputMaximo">MAXIMO:<label>
+        <input type="text" class="form-control  ml-2" id="inputMaximo" readonly>
+      </div>
+      <div class="form-group row mb-0">
+        <label class="text" for="inputPromedio">PROMEDIO:<label>
+        <input type="text" class="form-control  ml-2" id="inputPromedio" readonly>
+      </div>
+      <div class="form-group row mb-0">
+        <label class="text" for="inputMinimo">MINIMO:<label>
+        <input type="text" class="form-control  ml-2" id="inputMinimo" readonly>
+      </div>
+    </div>
+  </div>
+
+  <div id="campos" class="container-fluid" style="background-color: rgb(212, 3, 3);">
+    <div class="d-flex justify-content-around">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="columNombre" checked>
+        <label class="form-check-label">NOMBRE</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="columTipo" checked>
+        <label class="form-check-label">TIPO</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="columAlias" checked>
+        <label class="form-check-label">ALIAS</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="columDefensa" checked>
+        <label class="form-check-label">DEFENSA</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="columMiedo" checked>
+        <label class="form-check-label">MIEDO</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive"></div>
+
+  <footer>
+    <nav class="navbar navbar-expand" style="background-color: rgb(119, 0, 255);">
+      <div class="navbar-collapse justify-content-between">
+        <ul class="nav float-end">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="./monstruos.html">Personajes</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Blog</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Contactos</a>
+          </li>
+        </ul>
+        <span id="derechos">Laboratorio III - Todos los derechos reservados 2023 &copy;</span>
+      </div>
+    </nav>
+  </footer>
+
+
+
+
+
+
+
+
+</body>
+</html>
