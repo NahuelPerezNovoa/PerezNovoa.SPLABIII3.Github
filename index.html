@@ -16,6 +16,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <title>PérezNovoa.SPLABIII</title>
 </head>
 <body>
@@ -135,6 +137,12 @@
   </div>
 
   <div class="container-fluid pt-3" style="background-color: rgb(211, 127, 0);">
+    <div class="d-flex justify-content-center mb-10 pb-10">
+      <textarea id="taUltimosTres" style="width: 600px; height: 150px;"></textarea>
+    </div>
+  </div>
+
+  <div class="container-fluid pt-3" style="background-color: rgb(211, 127, 0);">
     <div class="d-flex justify-content-around mb-0">
       <div class="form-group row mb-0">
         <label class="text" for="slcFiltro">Filtrar tipo:<label>
@@ -192,6 +200,8 @@
   </div>
 
   <div class="table-responsive"></div>
+
+  <canvas id="graficoMonstruos"></canvas>
 
   <footer>
     <nav class="navbar navbar-expand" style="background-color: rgb(119, 0, 255);">

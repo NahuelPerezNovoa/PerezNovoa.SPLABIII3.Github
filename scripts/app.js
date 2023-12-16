@@ -175,6 +175,35 @@ function actualizarTabla(lista) {
   if(localStorage.getItem("columnasSeleccionadas") != null){
     onColumnasSeleccionadas(localStorage.getItem("columnasSeleccionadas"));
   }
+  cargarTextArea(lista);
+  loadChart();
+}
+
+function cargarTextArea(data){
+  const objetosOrdenados = [data].sort((a, b) => b.id - a.id);
+  const ultimosTresElementos = objetosOrdenados[0].slice(0, 3);
+  
+  let content = "ULTIMOS 3 AGREGADOS:\n";
+  ultimosTresElementos.forEach((monstruo) =>{
+    content = content+"Nombre: "+monstruo.nombre+", Fecha: "+formatearFecha(monstruo.id)+";\n";
+  });
+
+  document.getElementById('taUltimosTres').value = content;
+}
+
+function formatearFecha(fecha) {
+  const date = new Date(fecha);
+
+  const dia = date.getDate();
+  const mes = date.getMonth() + 1; 
+  const año = date.getFullYear();
+
+  const diaFormateado = (dia < 10) ? `0${dia}` : dia;
+  const mesFormateado = (mes < 10) ? `0${mes}` : mes;
+
+  const fechaFormateada = `${diaFormateado}/${mesFormateado}/${año}`;
+
+  return fechaFormateada;
 }
 //#endregion
 
@@ -322,6 +351,7 @@ function llenarFormulario(monstruo) {
   $form.rdoDefensa.value = monstruo.defensa;
   $form.slcTipos.value = monstruo.tipo;
   $form.slideMiedo.value = monstruo.miedo;
+  saveMonstruosSeleccionados(monstruo.id);
 }
 
 function ocultarBotones() {
@@ -349,7 +379,20 @@ function onFilaSeleccionada(id) {
   $btnCancelar.disabled = true;
   getMonstruoAjax(parseInt(id));
 }
+
 //#endregion
+
+function saveMonstruosSeleccionados(id){
+  var arrayMonstruosSeleccionados = Array.from([]);
+  if(localStorage.getItem("monstruosSeleccionados") == null){
+    arrayMonstruosSeleccionados.push(id.toString());
+  }else{
+    arrayMonstruosSeleccionados = localStorage.getItem("monstruosSeleccionados").split(',');
+    arrayMonstruosSeleccionados.push(id.toString());
+  }
+  localStorage.setItem("monstruosSeleccionados", arrayMonstruosSeleccionados);
+  loadChart();
+}
 
 
 /* VALIDACIONES */
@@ -394,5 +437,66 @@ function aplicarReduce(data) {
     else
       return actual.miedo
   }, 101);
-  $inputMinimo.setAttribute("value", `${minimo}`);
+  $inputMinimo.setAttribute("value", `${minimo}`);  
+}
+
+function loadChart(){
+
+  if(localStorage.getItem("monstruosSeleccionados") != null){
+    let arrayMonstruosSeleccionados = localStorage.getItem("monstruosSeleccionados").split(',');
+
+    
+  let valores = Array.from([]);
+  let frecuencias = Array.from([]);
+
+  arrayMonstruosSeleccionados.forEach(function(id) {
+    if(!valores.includes(id)){
+      valores.push(id);
+    }
+  });
+
+  for (let i = 0; i < valores.length; i++) {
+    let count = 0;
+    arrayMonstruosSeleccionados.forEach(function(id) {
+      if(id==valores[i]){
+        count++;
+      }
+    });
+    frecuencias.push(count);
+  }
+
+  var data = {
+    labels: valores,
+    datasets: [{
+      label: "Monstruos seleccionados",
+      data: frecuencias,
+      backgroundColor: ["rgba(255, 21, 0, 1)", "rgba(0, 0, 255, 1)", "rgba(0, 255, 0, 1)","rgba(212, 0, 255, 1)","rgba(255, 0, 180, 1)"],
+      borderColor: ["rgba(0, 0, 0, 1)"],
+      borderWidth: 1
+    }]
+  };
+
+  var options = {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+
+  var ctx = document.getElementById('graficoMonstruos').getContext('2d');
+
+  var existingChart = Chart.getChart(ctx);
+
+  if (existingChart) {
+    existingChart.destroy();
+  }
+
+  var myChart = new Chart(ctx, {
+    type: 'bar', 
+    data: data,
+    options: options
+  });
+  }
+
 }
